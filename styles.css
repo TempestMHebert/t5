@@ -63,6 +63,10 @@ header h1 {
   transition: color 0.3s;
 }
 
+body.light-mode h1 {
+  color: #000;
+}
+
 /* Calendar Section */
 #calendarSection {
   background-color: var(--container-bg-dark);
@@ -81,6 +85,10 @@ header h1 {
   letter-spacing: 0.03em;
   user-select: none;
   text-align: center;
+}
+
+body.light-mode #calendarSection h2 {
+  color: #000;
 }
 
 /* Calendar Grid */
