@@ -9,8 +9,8 @@ const FILES_TO_CACHE = [
   "/script.js",
   "/createWorkout.js",
   "/manifest.json",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png"
+  "/icons/bolt.png",
+  "https://kit.fontawesome.com/42639f9b64.js"
 ];
 
 self.addEventListener("install", (event) => {
