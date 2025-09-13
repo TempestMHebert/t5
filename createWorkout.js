@@ -113,3 +113,50 @@ function handleFormSubmit(e) {
   localStorage.setItem(formattedDate, JSON.stringify(workout));
   window.location.href = "index.html";
 }
+
+// Backup localStorage to JSON file
+function backupLocalStorage() {
+  const data = {};
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    data[key] = localStorage.getItem(key);
+  }
+
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "workout-backup.json";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+// Restore localStorage from uploaded JSON file
+function restoreLocalStorageFromFile(file) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      for (const key in data) {
+        localStorage.setItem(key, data[key]);
+      }
+      alert("Workouts restored successfully! Reload the page to see changes.");
+    } catch {
+      alert("Invalid backup file.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+document.getElementById("backupBtn").addEventListener("click", backupLocalStorage);
+
+document.getElementById("restoreInput").addEventListener("change", function(e) {
+  if (e.target.files.length > 0) {
+    restoreLocalStorageFromFile(e.target.files[0]);
+    e.target.value = ""; // Clear file input after upload
+  }
+});
