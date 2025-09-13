@@ -45,13 +45,12 @@
     <nav>
         <a href="index.html"><i class="fa-solid fa-grip"></i></a>
         <a href="createWorkout.html"><i class="fa-solid fa-dumbbell"></i></a>
-       <!-- <a href="dailyWorkout.html"><i class="fa-solid fa-user"></i></a> -->
     </nav>
 
     <script src="createWorkout.js"></script>
     <script>
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./service-worker.js")
+        navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("✅ Service Worker registered"))
       .catch(err => console.error("Service Worker error:", err));
     }
