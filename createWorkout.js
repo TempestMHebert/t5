@@ -97,7 +97,8 @@ function handleFormSubmit(e) {
   const dateVal = document.getElementById("workoutDate").value;
   const notes = document.getElementById("notes").value.trim();
 
-  const dateObj = new Date(dateVal);
+  const [year, month, day] = dateVal.split('-').map(Number);
+  const dateObj = new Date(year, month - 1, day);
   const formattedDate = `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
 
   const exercises = Array.from(document.getElementsByName("exercise")).map(input => input.value.trim()).filter(value => value !== "");
