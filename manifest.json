@@ -1,0 +1,16 @@
+{
+  "name": "Tucker's Workouts",
+  "short_name": "Workouts",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Create and keep track of workouts that you create.",
+
+  "icons": [
+    {
+      "src": "/icons/bolt.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    }
+  ]
+}

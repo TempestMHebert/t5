@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://kit.fontawesome.com/42639f9b64.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="200x200" href="icons/bolt.png">
+    <title>Tucker's Workouts</title>
+</head>
+
+<body>
+    <!-- Top section of page -->
+    <header>
+        <h1>Welcome back, Tucker!</h1>
+    </header>
+
+
+    <!-- Main page area. Calendar -->
+    <main>
+        <section id="calendarSection">
+            <h2>Workout Calendar</h2>
+            <div id="calendar"></div>
+        </section>
+
+        <!-- Popup Modal for No Workout -->
+        <div id="noWorkoutModal" class="modal hidden">
+            <div class="modalContent">
+                <span id="closeModal" class="closeBtn">&times;</span>
+                <p id="modalMessage">No workout for this date.</p>
+                <i id="deleteWorkoutIcon" class="fa-solid fa-trash delete-icon hidden" title="Delete Workout"></i>
+                <button id="modalCreateBtn">Create a Workout</button>
+            </div>
+        </div>
+    </main>
+    </main>
+
+    <div id="themeToggleContainer">
+        <label class="switch">
+            <input type="checkbox" id="themeSwitch" />
+            <span class="slider round"></span>
+        </label>
+        <span class="theme-label">Light Mode</span>
+    </div>
+
+
+
+    <!-- Navigation tabs at bottom of app -->
+    <nav>
+        <a href="index.html"><i class="fa-solid fa-grip"></i></a>
+        <a href="createWorkout.html"><i class="fa-solid fa-dumbbell"></i></a>
+        <!-- <a href="dailyWorkout.html"><i class="fa-solid fa-user"></i></a>-->
+    </nav>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(() => console.log("✅ Service Worker registered"))
+                .catch(err => console.error("Service Worker error:", err));
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <script src="https://kit.fontawesome.com/42639f9b64.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Create New Workout</title>
+</head>
+<body>
+
+    <main>
+        <!-- Create workout form -->
+        <section id="createWorkoutSection">
+            <h2>Create a New Workout</h2>
+            <form id="createWorkoutForm">
+                <label for="workoutName">Workout Name</label>
+                <input type="text" id="workoutName" name="workoutName"><br><br>
+
+
+                <label for="workoutDate">Date:</label>
+                <input type="date" id="workoutDate" name="workoutDate" required><br><br>
+
+
+                <label for="exerciseList">Exercises</label>
+                <div id="exercisesContainer">
+                    <!-- first exercise added by js-->
+                </div>
+                <button type="button" id="addExerciseBtn">Add Exercise</button><br><br>
+
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" rows="4" cols="30"></textarea>
+
+                <button type="submit">Save Workout</button>
+
+            </form>
+    </main>
+    
+
+
+
+     <!-- Navigation tabs at bottom of app -->
+    <nav>
+        <a href="index.html"><i class="fa-solid fa-grip"></i></a>
+        <a href="createWorkout.html"><i class="fa-solid fa-dumbbell"></i></a>
+       <!-- <a href="dailyWorkout.html"><i class="fa-solid fa-user"></i></a> -->
+    </nav>
+
+    <script src="createWorkout.js"></script>
+    <script>
+    if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js")
+      .then(() => console.log("✅ Service Worker registered"))
+      .catch(err => console.error("Service Worker error:", err));
+    }
+</script>
+
+</body>
+</html>

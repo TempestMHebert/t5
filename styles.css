@@ -1,0 +1,539 @@
+/* Global resets and base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Headers */
+header, main, nav {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  color: #f5f5f5;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+body.light-mode header h1 {
+  color: #111;
+}
+
+/* Calendar Section */
+#calendarSection {
+  background-color: #1e1e1e;
+  padding: 20px 18px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+/* Calendar Title */
+#calendarSection h2 {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  color: #cfcfcf;
+  letter-spacing: 0.03em;
+  user-select: none;
+  text-align: center;
+}
+
+/* Calendar Grid */
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  user-select: none;
+  width: 100%;
+}
+
+/* Each Day */
+.day {
+  background: #2c2c2c;
+  border-radius: 10px;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  color: #bbb;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.day:hover {
+  background-color: #3a3a3a;
+  color: #fff;
+  border-color: #4a90e2;
+}
+
+.day.active,
+.day.active:hover {
+  background-color: #4a90e2;
+  color: white;
+  font-weight: 700;
+  border-color: #357abd;
+}
+
+/* Dot indicator for workout */
+.workout-dot {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #53d769;
+  border-radius: 50%;
+  /* no shadow */
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1500;
+  padding: 0 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modalContent {
+  background: #1e1e1e;
+  padding: 28px 24px;
+  border-radius: 14px;
+  max-width: 360px;
+  width: 100%;
+  color: #ddd;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+  position: relative;
+  user-select: text;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 1.6rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.closeBtn:hover {
+  color: #f5f5f5;
+}
+
+#modalCreateBtn {
+  margin-top: 22px;
+  padding: 12px 28px;
+  background: #4a90e2;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  user-select: none;
+  /* no shadows */
+}
+
+#modalCreateBtn:hover {
+  background-color: #357abd;
+}
+
+/* Form Section */
+#createWorkoutSection {
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 480px;
+  margin: 0 auto 36px;
+  color: #ddd;
+  font-weight: 500;
+  user-select: none;
+}
+
+body, #createWorkoutSection, header h1 {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+body.light-mode #createWorkoutSection {
+  background-color: #fff;
+  color: #111;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+#createWorkoutSection h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #eee;
+  user-select: text;
+}
+
+body.light-mode #createWorkoutSection h2 {
+  color: #111;
+}
+
+/* Form Labels */
+#createWorkoutSection label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #bbb;
+  user-select: text;
+}
+
+/* Inputs & Textareas */
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #eee;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.3s ease;
+  user-select: text;
+}
+
+body.light-mode input,
+body.light-mode textarea {
+  background-color: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+  color: #888;
+}
+
+body.light-mode button {
+  background-color: #e0e0e0;
+  color: #111;
+}
+
+body.light-mode button:hover {
+  background-color: #d0d0d0;
+}
+
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #666;
+  font-style: italic;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  outline: none;
+  background-color: #333333;
+  border-color: #4a90e2;
+  color: #fff;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #888;
+  box-shadow: 0 0 0 2px rgba(100, 100, 255, 0.3);
+}
+
+/* Light mode focus styling */
+body.light-mode input:focus,
+body.light-mode textarea:focus {
+  border-color: #333;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Exercise Group */
+.exerciseGroup {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+/* Suggestions dropdown */
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #2a2a2a;
+  border-radius: 0 0 8px 8px;
+  max-height: 140px;
+  overflow-y: auto;
+  z-index: 1200;
+  user-select: none;
+  border: 1px solid #444;
+}
+
+.suggestion-item {
+  padding: 10px 16px;
+  color: #ccc;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.25s ease;
+}
+
+.suggestion-item:hover {
+  background-color: #444444;
+  color: #fff;
+}
+
+body.light-mode .suggestions {
+  background-color: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+body.light-mode .suggestion-item:hover {
+  background-color: #f2f2f2;
+}
+
+/* Buttons */
+button, #addExerciseBtn, #createWorkoutForm button[type="submit"] {
+  background: #4a90e2;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #f5f5f5;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  margin-top: 12px;
+  display: inline-block;
+  width: auto;
+}
+
+button:hover,
+#addExerciseBtn:hover,
+#createWorkoutForm button[type="submit"]:hover {
+  background-color: #357abd;
+}
+
+/* Navigation bar */
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 480px;
+  height: 100px;
+  background-color: #222;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.7);
+  z-index: 1100;
+}
+
+nav a {
+  color: #888;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 14px 20px;
+  text-decoration: none;
+  user-select: none;
+  transition: color 0.25s ease;
+}
+
+nav a.active,
+nav a:hover {
+  color: #4a90e2;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 12px 80px;
+  }
+
+  #calendarSection, #createWorkoutSection {
+    padding: 16px 12px;
+  }
+
+  .day {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  #addExerciseBtn {
+  margin-top: 0; 
+}
+
+
+  button, #addExerciseBtn, #createWorkoutForm button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  #createWorkoutForm button {
+  padding: 8px 16px; 
+  font-size: 0.9rem; 
+  border-radius: 6px; 
+}
+
+#workoutDate,
+#workoutName,
+#notes {
+  margin-bottom: 0; /* remove excess spacing */
+}
+
+
+/* Toggle switch container */
+#themeToggle {
+  position: fixed;
+  bottom: 70px; /* adjust so it's above nav */
+  right: 20px; /* or left: 20px if you want it on the left */
+  z-index: 1001;
+}
+
+/* Switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+/* Hide default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* LIGHT MODE */
+body.light-mode {
+  background-color: #f2f2f2;
+  color: #111;
+}
+
+body.light-mode #calendarSection,
+body.light-mode .modalContent {
+  background-color: white;
+  color: #111;
+}
+
+body.light-mode .day {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+body.light-mode .workout-dot {
+  background-color: #28a745;
+}
+
+body.light-mode nav {
+  background-color: #ddd;
+}
+
+body.light-mode #modalCreateBtn {
+  background-color: #007bff;
+}
+
+body.light-mode .suggestions {
+  background-color: #fff;
+  color: #000;
+}
+
+.delete-icon {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-size: 1.3rem;
+  color: #dc3545;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.delete-icon:hover {
+  color: #a71d2a;
+}
+
+
+}
