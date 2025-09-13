@@ -2,7 +2,7 @@ const CACHE_NAME = "workout-app-cache-v1";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/createWorkout.html",  // make sure this matches your actual filename!
+  "/createWorkout.html",
   "/styles.css",
   "/script.js",
   "/createWorkout.js",
