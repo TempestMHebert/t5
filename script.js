@@ -1,3 +1,4 @@
+// Generate Calendar
 function generateCalendar() {
     const calendar = document.getElementById("calendar");
     const today = new Date();
@@ -7,17 +8,20 @@ function generateCalendar() {
 
     calendar.innerHTML = "";
 
+    // Create Day Elements
     for (let day = 1; day <= daysInMonth; day ++) {
         const dateString = `${month + 1}/${day}/${year}`;
         const dayEl = document.createElement("div");
         dayEl.className = "day";
         dayEl.textContent = day; 
 
+        // Highlight Today
         if (day === today.getDate()) {
-        dayEl.style.backgroundColor = "#cce5ff";
+        dayEl.style.backgroundColor = "#6494dcff";
         dayEl.style.fontWeight = "bold";
         }
 
+        // Create Dot Indicator for Days with Workouts
         const workoutData = localStorage.getItem(dateString);
         if (workoutData) {
         const dot = document.createElement("div");
@@ -25,6 +29,7 @@ function generateCalendar() {
         dayEl.appendChild(dot);
         }
 
+        // Click on Day to View or Create Workout
         dayEl.onclick = () => {
             const data = localStorage.getItem(dateString);
             if (data) {
@@ -56,11 +61,12 @@ function generateCalendar() {
                 showModal(`No workout for ${dateString}`, true, dateString);
             }
         };
-
+        // Add Day to Calendar
         calendar.appendChild(dayEl);
     }
 }
 
+// Show Modal for Viewing or Creating Workouts
 function showModal(message, showCreate, dateString) {
     const modal = document.getElementById("noWorkoutModal");
     const msg = document.getElementById("modalMessage");
@@ -72,6 +78,7 @@ function showModal(message, showCreate, dateString) {
     modal.classList.remove("hidden");
     closeBtn.onclick = () => modal.classList.add("hidden");
 
+    // If No Workout Exists, Show Create Button
     if (showCreate) {
         createBtn.style.display = "inline-block";
         deleteIcon.classList.add("hidden");
@@ -83,9 +90,11 @@ function showModal(message, showCreate, dateString) {
             window.location.href = `createWorkout.html?date=${encodeURIComponent(dateString)}`;
         };
     } else {
+        // If Workout Exists, Hide Create Button and Show Delete Icon
         createBtn.style.display = "none";
         deleteIcon.classList.remove("hidden");
 
+        // Delete Workout
         deleteIcon.onclick = () => {
             if (confirm("Are you sure you want to delete this workout?")) {
                 localStorage.removeItem(dateString);
@@ -96,7 +105,9 @@ function showModal(message, showCreate, dateString) {
     }
 }
 
+// DOM loaded content
 window.addEventListener("DOMContentLoaded", () => {
+    // Generate Calendar
     generateCalendar();
 
     // Theme toggle logic
@@ -110,6 +121,7 @@ window.addEventListener("DOMContentLoaded", () => {
     themeSwitch.checked = true;
     }
 
+    // Toggle Theme on Switch Change
     themeSwitch.addEventListener("change", () => {
     if (themeSwitch.checked) {
         body.classList.add("light-mode");

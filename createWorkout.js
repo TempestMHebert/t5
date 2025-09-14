@@ -1,14 +1,17 @@
+// DOM loaded content
 document.addEventListener("DOMContentLoaded", () => { 
+
   // Apply saved theme
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "light") {
     document.body.classList.add("light-mode");
   }
+
   const urlParams = new URLSearchParams(window.location.search);
   const passedDate = urlParams.get("date");
   const workoutDateInput = document.getElementById("workoutDate");
 
-  // Set date if passed from calendar
+  // Set Date Input if Passed Through Calendar
   if (passedDate) {
     const [month, day, year] = passedDate.split("/");
     const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
@@ -16,72 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
     workoutDateInput.value = formattedDate;
   }
 
-  addExerciseField();
-
-  document.getElementById("addExerciseBtn").addEventListener("click", addExerciseField);
   document.getElementById("createWorkoutForm").addEventListener("submit", handleFormSubmit);
 });
 
-// Outside of DOM loaded content
-function addExerciseField() {
-  const container = document.getElementById("exercisesContainer");
-
-  const exerciseGroup = document.createElement("div");
-  exerciseGroup.className = "exerciseGroup";
-  exerciseGroup.style.position = "relative"; // needed for suggestion positioning
-
-  const newExerciseInput = document.createElement("input");
-  newExerciseInput.type = "text";
-  newExerciseInput.name = "exercise";
-  newExerciseInput.placeholder = "Exercise name";
-
-  const suggestions = document.createElement("div");
-  suggestions.className = "suggestions";
-  suggestions.style.display = "none";
-
-  // Event listener to filter suggestions
-  newExerciseInput.addEventListener("input", () => {
-    const query = newExerciseInput.value.toLowerCase();
-    const allExercises = JSON.parse(localStorage.getItem("allExercises")) || [];
-
-    const matches = allExercises.filter(ex =>
-      ex.toLowerCase().includes(query)
-    );
-
-    suggestions.innerHTML = "";
-
-    if (matches.length && query) {
-      matches.forEach(match => {
-        const option = document.createElement("div");
-        option.className = "suggestion-item";
-        option.textContent = match;
-
-        option.onclick = () => {
-          newExerciseInput.value = match;
-          suggestions.style.display = "none";
-        };
-
-        suggestions.appendChild(option);
-      });
-
-      suggestions.style.display = "block";
-    } else {
-      suggestions.style.display = "none";
-    }
-  });
-
-  newExerciseInput.addEventListener("blur", () => {
-    setTimeout(() => {
-      suggestions.style.display = "none";
-    }, 100);
-  });
-
-  exerciseGroup.appendChild(newExerciseInput);
-  exerciseGroup.appendChild(suggestions);
-  container.appendChild(exerciseGroup);
-}
-
-
+// Save Unique Exercises to Local Storage
 function saveExercisesToLocal(exercises) {
   const key = "allExercises";
   const existing = JSON.parse(localStorage.getItem(key)) || [];
@@ -89,7 +30,7 @@ function saveExercisesToLocal(exercises) {
   localStorage.setItem(key, JSON.stringify(combined));
 }
 
-
+// Form Submission
 function handleFormSubmit(e) {
   e.preventDefault();
 
@@ -115,7 +56,7 @@ function handleFormSubmit(e) {
   window.location.href = "index.html";
 }
 
-// Backup localStorage to JSON file
+// Backup localStorage to JSON File
 function backupLocalStorage() {
   const data = {};
 
@@ -136,7 +77,7 @@ function backupLocalStorage() {
   URL.revokeObjectURL(url);
 }
 
-// Restore localStorage from uploaded JSON file
+// Restore localStorage From Uploaded JSON File
 function restoreLocalStorageFromFile(file) {
   const reader = new FileReader();
   reader.onload = function(e) {

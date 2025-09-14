@@ -6,61 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
     <script src="https://kit.fontawesome.com/42639f9b64.js" crossorigin="anonymous"></script>
+    <script src="createWorkout.js" defer></script>
+
     <link rel="stylesheet" href="styles.css">
+
     <title>Create New Workout</title>
 </head>
 
 <body>
-
     <main>
         <!-- Create workout form -->
         <section id="createWorkoutSection">
             <h2>Create a New Workout</h2>
             <form id="createWorkoutForm">
+                <!-- Workout Name -->
                 <label for="workoutName">Workout Name</label>
                 <input type="text" id="workoutName" name="workoutName"><br><br>
 
-
-                <label for="workoutDate">Date:</label>
+                <!-- Date -->
+                <label for="workoutDate">Date</label>
                 <input type="date" id="workoutDate" name="workoutDate" required><br><br>
 
-
+                <!-- Exercises -->
                 <label for="exerciseList">Exercises</label>
-                <div id="exercisesContainer">
-                    <!-- first exercise added by js-->
-                </div>
                 <button type="button" id="addExerciseBtn">Add Exercise</button><br><br>
 
+                <!-- Notes -->
                 <label for="notes">Notes</label>
                 <textarea id="notes" name="notes" rows="4" cols="30"></textarea>
 
+                <!-- Submit -->
                 <button type="submit">Save Workout</button>
-
             </form>
+        </section>
 
-            <section id="backupSection" class="backup-restore-container">
-                <h3>Backup & Restore Workouts</h3>
-                <div class="buttons-row">
-                    <button id="backupBtn" class="btn">Download Backup</button>
-                    <label for="restoreInput" class="btn upload-label">Upload Backup File</label>
-                    <input type="file" id="restoreInput" accept=".json" />
-                </div>
-            </section>
-
-
+        <!-- Backup & Restore Data -->
+        <section id="backupSection" class="backup-restore-container">
+            <h3>Backup & Restore Workouts</h3>
+            <div class="buttons-row">
+                <button id="backupBtn" class="btn">Download Backup</button>
+                <label for="restoreInput" class="btn upload-label">Upload Backup File</label>
+                <input type="file" id="restoreInput" accept=".json" />
+            </div>
+        </section>
     </main>
 
-
-
-
-    <!-- Navigation tabs at bottom of app -->
+    <!-- Navigation Tabs -->
     <nav>
         <a href="index.html"><i class="fa-solid fa-grip"></i></a>
         <a href="createWorkout.html"><i class="fa-solid fa-dumbbell"></i></a>
+        <a href="exerciseList.html"><i class="fa-solid fa-list"></i></a>
     </nav>
 
-    <script src="createWorkout.js"></script>
+    <!-- Service Worker for Offline Mode -->
     <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
