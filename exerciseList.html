@@ -18,17 +18,37 @@
 <body>
     <!-- Header -->
     <header>
-        <h1>Exercise List</h1>
+        <h1>Your Exercises</h1>
     </header>
 
     <main>
         <!-- Exercise List -->
         <section id="exerciseListSection" class="exerciseListContainer">
-            <h3>Your Exercises</h3>
-            <ul id="exerciseList" style="list-style-type:none;">
-                <!-- Exercises will be populated here by JavaScript -->
-            </ul>
+            <!-- Search Bar -->
+            <span id="searchIcon" style="float:right; cursor:pointer;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            
+            <!-- Hidden search bar -->
+            <input id="searchExerciseInput" type="text" placeholder="Search exercises..." style="display:none;" />
+            <!-- Add New Exercise -->
             <button id="addExerciseButton">Add New Exercise</button>
+            
+            
+            <!-- Hidden input + save button -->
+            <div id="newExerciseContainer" style="display:none;">
+                <input id="newExerciseInput" type="text" placeholder="Enter exercise..." />
+                <button id="saveExerciseButton" tabindex="0">Save</button>
+            </div>
+            
+            <br><br>
+            
+            <!-- Exercise List -->
+            <div class="exercise-list-page-container">
+                <ul id="exerciseList" style="list-style-type:none;">
+                    <!-- Exercises will be populated here by JavaScript -->
+                </ul>
+            </div>
         </section>
     </main>
 

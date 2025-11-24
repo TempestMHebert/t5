@@ -31,7 +31,22 @@
 
                 <!-- Exercises -->
                 <label for="exerciseList">Exercises</label>
-                <button type="button" id="addExerciseBtn">Add Exercise</button><br><br>
+
+                <div id="exercise-add-container">
+                    <div id="exercise-list-container">
+                        <!-- Selected exercises will appear here -->
+                        <ul id="workoutExerciseList" style="list-style-type:none;"></ul><br>
+                    </div>
+    
+                    <!-- Add Exercise Button -->
+                    <button type="button" id="addExerciseBtn">Add Exercise</button><br><br>
+    
+                    <!-- Hidden selector for available exercises -->
+                    <div id="exerciseSelector">
+                    <input id="searchWorkoutExerciseInput" type="text" placeholder="Search exercises..." />
+                    <ul id="availableExercises"></ul>
+                    </div>
+                </div>
 
                 <!-- Notes -->
                 <label for="notes">Notes</label>

@@ -218,7 +218,19 @@ body.light-mode .workout-dot {
   user-select: none;
   transition: background-color 0.3s, color 0.3s;
   margin-bottom: 150px;
-  height: 80vh;
+  min-height: 80vh; /* baseline, but can grow */
+}
+
+#createWorkoutSection #workoutExerciseList li {
+  border-bottom: none;
+}
+
+.exerciseListContainer #workoutExerciseList li {
+  border-bottom: 1px solid #444;
+}
+
+body.light-mode .exerciseListContainer #workoutExerciseList li {
+  border-bottom: 1px solid #ccc;
 }
 
 body.light-mode #createWorkoutSection {
@@ -256,14 +268,14 @@ body.light-mode #createWorkoutSection label {
 }
 
 /* Inputs & Textareas */
-input[type="text"],
+body.light-mode input[type="text"],
 textarea {
   width: 100%;
   background: var(--container-bg-alt-dark);
   border: 1px solid #444;
   border-radius: 8px;
   padding: 12px 14px;
-  color: #eee;
+  color: black;
   font-size: 1rem;
   font-weight: 500;
   transition: background-color 0.2s ease, border-color 0.3s ease, color 0.3s;
@@ -592,6 +604,158 @@ body.light-mode .backup-restore-container .upload-label {
   letter-spacing: normal;
 }
 
+.exercise-list-container {
+  min-height: 300px;      
+  max-height: none;
+  margin-bottom: 1rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #222;
+  padding: 0;
+}
+
 .exerciseListContainer h3 {
   font-weight: 530;
 }
+
+/* Wrap around button + selector */
+#exercise-add-container {
+  position: relative;   /* anchor for dropdown */
+  display: block;       /* block so it spans full width of form */
+  margin-bottom: 1rem;  /* spacing below */
+}
+
+/* Dropdown panel */
+#exerciseSelector {
+  position: absolute;   /* relative to #exercise-add-container */
+  top: calc(100% + 8px);/* just below the button, with a little gap */
+  left: 0;
+  width: 100%;          /* match container width */
+  max-width: 300px;     /* optional limit */
+  background-color: #222; /* solid background */
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 8px;
+  z-index: 1000;
+  display: none;        /* hidden by default */
+}
+
+/* Light mode override */
+body.light-mode #exerciseSelector {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+/* Search input inside dropdown */
+#searchWorkoutExerciseInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: #333;
+  color: #eee;
+}
+
+body.light-mode #searchWorkoutExerciseInput {
+  background-color: #f9f9f9;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+/* Scrollable list */
+#availableExercises {
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background-color: inherit; /* same as selector background */
+}
+
+#availableExercises li {
+  padding: 6px;
+  cursor: pointer;
+}
+
+#availableExercises li:hover {
+  background-color: #333;
+}
+
+body.light-mode #availableExercises li:hover {
+  background-color: #eee;
+}
+
+.exercise-list-container {
+  max-height: 200px;      /* fixed height */
+  overflow-y: auto;       /* scroll inside instead of expanding */
+  margin-bottom: 1rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #222; /* solid background */
+  padding: 8px;
+}
+
+body.light-mode .exercise-list-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+#workoutExerciseList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+}
+
+#workoutExerciseList li {
+  margin: 0 -12px;         /* extend into container padding */
+  padding: 8px 12px;
+  border-bottom: 1px solid #444;
+}
+
+body.light-mode #workoutExerciseList li {
+  border-bottom: 1px solid #ccc;
+}
+
+#exerciseList li {
+  border-bottom: 1px solid #444;
+}
+
+/* Exercise List page container */
+.exercise-list-page-container {
+  min-height: 300px;        /* decent starting height */
+  height: auto;             /* grow naturally with content */
+  margin-bottom: 1rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #222;
+  padding: 12px;
+}
+
+body.light-mode .exercise-list-page-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+/* UL reset */
+.exercise-list-page-container #exerciseList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+}
+
+/* LI styling */
+.exercise-list-page-container #exerciseList li {
+  display: block;           /* full width rows */
+  width: 100%;
+  padding: 8px 12px;
+  border-bottom: 1px solid #444;
+  box-sizing: border-box;
+}
+
+body.light-mode .exercise-list-page-container #exerciseList li {
+  border-bottom: 1px solid #ccc;
+}
+
